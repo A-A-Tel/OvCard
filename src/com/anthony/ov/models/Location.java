@@ -25,10 +25,13 @@ public class Location {
         return name;
     }
 
+
+    // This calculates the distances of two lon/lat pairs with the Haversine method
+    // It rounds up to maximize the travel cost :)
     public int calculateDistance(Location location) {
 
-        double lon1 = longitude;
-        double lat1 = latitude;
+        double lon1 = getLon();
+        double lat1 = getLat();
         double lon2 = location.getLon();
         double lat2 = location.getLat();
 
