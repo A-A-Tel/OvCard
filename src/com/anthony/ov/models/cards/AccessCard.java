@@ -1,4 +1,4 @@
-package com.anthony.ov.models;
+package com.anthony.ov.models.cards;
 
 import java.util.Random;
 

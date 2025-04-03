@@ -1,6 +1,7 @@
-package com.anthony.ov.models;
+package com.anthony.ov.models.data;
 
 import java.time.DayOfWeek;
+import java.time.LocalDate;
 import java.time.MonthDay;
 import java.util.ArrayList;
 
@@ -50,5 +51,22 @@ public class TravelProduct {
 
     public ArrayList<MonthDay> getValidYearDays() {
         return validYearDays;
+    }
+
+    public boolean isValidDay() {
+        LocalDate now = LocalDate.now();
+        DayOfWeek currentDay = now.getDayOfWeek();
+        for (DayOfWeek day : validWeekDays) {
+            if (day == currentDay) {
+                return true;
+            }
+        }
+        MonthDay currentMonthDay = MonthDay.from(now);
+        for (MonthDay monthDay : validYearDays) {
+            if (monthDay.equals(currentMonthDay)) {
+                return true;
+            }
+        }
+        return false;
     }
 }

@@ -1,4 +1,9 @@
-package com.anthony.ov.models;
+package com.anthony.ov.models.scanners;
+
+import com.anthony.ov.models.cards.AnonymousCard;
+import com.anthony.ov.models.data.Location;
+import com.anthony.ov.models.data.TransportType;
+import com.anthony.ov.models.data.TravelAgency;
 
 public class CardPole extends CardGate {
 

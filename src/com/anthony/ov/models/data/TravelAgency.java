@@ -1,4 +1,4 @@
-package com.anthony.ov.models;
+package com.anthony.ov.models.data;
 
 import java.util.Arrays;
 import java.util.Objects;

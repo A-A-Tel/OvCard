@@ -1,4 +1,6 @@
-package com.anthony.ov.models;
+package com.anthony.ov.models.cards;
+
+import com.anthony.ov.models.scanners.CardGate;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -49,6 +51,10 @@ public class AnonymousCard extends AccessCard {
         return checkInHistory;
     }
 
+    public void increaseBalance(double amount) {
+        balance += Math.round(amount * 100) / 100.0;
+    }
+
     public void checkIn(CardGate scanner) {
 
         checkInHistory.add(scanner);
@@ -65,11 +71,13 @@ public class AnonymousCard extends AccessCard {
 
     @Override
     public String toString() {
-        return "\r\nAnonymousCard:" +
-                "\r\n    ID: " + cardId +
-                "\r\n    Balance: " + balance +
-                "\r\n    IsFirstClass: " + firstClass +
-                "\r\n    IsCheckedIn: " + checkedIn +
-                "\r\n    ExpireDate: " + expirationDate;
+        return "AnonymousCard{" +
+                "balance=" + balance +
+                ", firstClass=" + firstClass +
+                ", checkedIn=" + checkedIn +
+                ", expirationDate=" + expirationDate +
+                ", checkInHistory=" + checkInHistory +
+                ", cardId='" + cardId + '\'' +
+                '}';
     }
 }

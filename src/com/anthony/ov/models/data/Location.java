@@ -1,4 +1,4 @@
-package com.anthony.ov.models;
+package com.anthony.ov.models.data;
 
 public class Location {
 
@@ -51,9 +51,10 @@ public class Location {
 
     @Override
     public String toString() {
-        return "\r\nLocation: " +
-                "\r\n    Name: " + name +
-                "\r\n    Longitude: " + longitude
-                + "\r\n    Latitude: " + latitude;
+        return "Location{" +
+                "longitude=" + longitude +
+                ", latitude=" + latitude +
+                ", name='" + name + '\'' +
+                '}';
     }
 }
