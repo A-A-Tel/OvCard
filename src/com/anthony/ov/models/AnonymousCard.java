@@ -2,35 +2,24 @@ package com.anthony.ov.models;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Random;
 
-public class AnonymousCard {
+public class AnonymousCard extends AccessCard {
 
-    private double balance;
+    protected double balance;
 
-    private boolean firstClass;
+    protected boolean firstClass;
 
-    private boolean checkedIn;
+    protected boolean checkedIn;
 
-    private final String cardId;
+    protected final LocalDateTime expirationDate;
 
-    private final LocalDateTime expirationDate;
-
-    private final ArrayList<CardScanner> checkInHistory;
+    protected final ArrayList<CardGate> checkInHistory;
 
     public AnonymousCard(double balance) {
         this.balance = balance;
 
         firstClass = false;
         checkedIn = false;
-
-        StringBuilder idBuilder = new StringBuilder();
-        Random rnd = new Random();
-
-        for (int i = 0; i < 16; i++) {
-            idBuilder.append(rnd.nextInt(10));
-        }
-        this.cardId = idBuilder.toString();
 
         expirationDate = LocalDateTime.now().plusYears(5);
         checkInHistory = new ArrayList<>();
@@ -48,34 +37,30 @@ public class AnonymousCard {
         return checkedIn;
     }
 
-    public String getCardId() {
-        return cardId;
+    public void setFirstClass(boolean firstClass) {
+        this.firstClass = firstClass;
     }
 
     public LocalDateTime getExpireDate() {
         return expirationDate;
     }
 
-    public ArrayList<CardScanner> getCheckInHistory() {
+    public ArrayList<CardGate> getCheckInHistory() {
         return checkInHistory;
     }
 
-    public void checkIn(CardScanner scanner) {
-
-
-        if (isCheckedIn()) {
-
-            double fee = scanner.calculateTravelFee(checkInHistory.getLast());
-
-            if (isFirstClass()) {
-                fee += fee * scanner.getAgency().getFirstClassFactor();
-            }
-
-            balance -= fee;
-        }
+    public void checkIn(CardGate scanner) {
 
         checkInHistory.add(scanner);
-        checkedIn = !checkedIn;
+        checkedIn = true;
+    }
+
+    public void checkOut(CardGate scanner, double fee) {
+
+        balance -= Math.round(fee * 100) / 100.0;
+
+        checkInHistory.add(scanner);
+        checkedIn = false;
     }
 
     @Override
