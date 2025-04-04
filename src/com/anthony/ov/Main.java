@@ -1,11 +1,17 @@
 package com.anthony.ov;
 
 import com.anthony.ov.models.cards.AnonymousCard;
+import com.anthony.ov.models.cards.PersonalCard;
 import com.anthony.ov.models.data.Location;
 import com.anthony.ov.models.data.TransportType;
 import com.anthony.ov.models.data.TravelAgency;
+import com.anthony.ov.models.data.TravelProduct;
 import com.anthony.ov.models.scanners.CardGate;
 import com.anthony.ov.models.scanners.CardPole;
+import com.anthony.ov.models.scanners.CardService;
+
+import java.time.DayOfWeek;
+import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
@@ -19,11 +25,35 @@ public class Main {
         CardGate amsterdamGate = new CardPole("0", TransportType.TRAIN, amsterdam, ns);
         CardGate rotterdamGate = new CardPole("1", TransportType.TRAIN, rotterdam, ns);
 
-        AnonymousCard card = new AnonymousCard(30);
+        TravelProduct studentProductWeekdays = new TravelProduct("Studentenreisproduct Weekdagen", 1, 1, false,
+                List.of(DayOfWeek.MONDAY, DayOfWeek.TUESDAY, DayOfWeek.WEDNESDAY, DayOfWeek.THURSDAY, DayOfWeek.FRIDAY),
+                List.of()
+        );
+        TravelProduct studentProductWeekend = new TravelProduct("Studentenreisproduct Weekend", 1, 1, false,
+                List.of(DayOfWeek.SATURDAY, DayOfWeek.SUNDAY),
+                List.of()
+        );
 
-        amsterdamGate.checkIn(card);
-        rotterdamGate.checkOut(card);
+        CardService cardService = new CardService();
 
-        System.out.println(card);
+        AnonymousCard anonCard = new AnonymousCard(30);
+        PersonalCard persCard = new PersonalCard(30, "AA Tel");
+
+        amsterdamGate.checkIn(anonCard);
+        rotterdamGate.checkOut(anonCard);
+
+        persCard.addTravelProduct(studentProductWeekdays);
+        persCard.addTravelProduct(studentProductWeekend);
+
+        cardService.scanCard(persCard);
+        cardService.setTravelProduct();
+
+        amsterdamGate.checkIn(persCard);
+        rotterdamGate.checkOut(persCard);
+
+
+
+        System.out.println(anonCard);
+        System.out.println(persCard);
     }
 }

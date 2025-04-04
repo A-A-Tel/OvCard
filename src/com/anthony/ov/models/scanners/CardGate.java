@@ -39,7 +39,7 @@ public class CardGate {
             TravelProduct product = ((PersonalCard) card).getActiveTravelProduct();
 
             if (product != null && product.isValidDay() && card.isFirstClass() == product.isFirstClass()) {
-                fee *= product.getDiscountFactor();
+                fee -= fee * product.getDiscountFactor();
             }
         }
         return Math.round(fee * 100) / 100.0;
@@ -104,7 +104,7 @@ public class CardGate {
             TravelProduct product = ((PersonalCard) card).getActiveTravelProduct();
 
             if (product != null) {
-                minimumBalance *= product.getBalanceRequirementDiscountFactor();
+                minimumBalance -= minimumBalance * product.getBalanceRequirementDiscountFactor();
             }
         }
 

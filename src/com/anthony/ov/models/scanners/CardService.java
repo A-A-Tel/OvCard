@@ -50,24 +50,29 @@ public class CardService {
             PersonalCard card = (PersonalCard) activeCard;
             ArrayList<TravelProduct> products = card.getTravelProducts();
 
-            outputTravelProducts(products);
-            System.out.println("Please enter the index of the travel product...");
-            int index;
-            while (true) {
+            if (products.isEmpty()) {
+                System.out.println("No travel products!");
+            } else {
 
-                try {
-                    index = Integer.parseInt(scanner.next());
-                    if (index >= products.size()) {
-                        System.out.println("Travel product index out of bounds!");
-                    } else {
-                        break;
+                outputTravelProducts(products);
+                System.out.println("Please enter the index of the travel product...");
+                int index;
+                while (true) {
+
+                    try {
+                        index = Integer.parseInt(scanner.next());
+                        if (index >= products.size()) {
+                            System.out.println("Travel product index out of bounds!");
+                        } else {
+                            break;
+                        }
+                    } catch (NumberFormatException _) {
+                        System.out.println("That is not a number!");
                     }
-                } catch (NumberFormatException _) {
-                    System.out.println("That is not a number!");
                 }
+                card.setActiveTravelProduct(products.get(index));
+                System.out.println("Active travel product is now " + card.getActiveTravelProduct().getName());
             }
-            card.setActiveTravelProduct(products.get(index));
-            System.out.println("Active travel product is now " + card.getActiveTravelProduct().getName());
         }
     }
 

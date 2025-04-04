@@ -42,11 +42,11 @@ public class PersonalCard extends AnonymousCard {
     public String toString() {
         return "PersonalCard{" +
                 "cardId='" + cardId + '\'' +
+                ", balance=" + balance +
                 ", checkInHistory=" + checkInHistory +
                 ", expirationDate=" + expirationDate +
                 ", checkedIn=" + checkedIn +
                 ", firstClass=" + firstClass +
-                ", balance=" + balance +
                 ", travelProducts=" + travelProducts +
                 ", name='" + name + '\'' +
                 '}';

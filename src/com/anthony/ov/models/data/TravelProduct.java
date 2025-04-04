@@ -3,7 +3,7 @@ package com.anthony.ov.models.data;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.MonthDay;
-import java.util.ArrayList;
+import java.util.List;
 
 public class TravelProduct {
 
@@ -15,12 +15,12 @@ public class TravelProduct {
 
     private final boolean isFirstClass;
 
-    private final ArrayList<DayOfWeek> validWeekDays;
+    private final List<DayOfWeek> validWeekDays;
 
-    private final ArrayList<MonthDay> validYearDays;
+    private final List<MonthDay> validYearDays;
 
     public TravelProduct(String name, double discountFactor, double balanceRequirementDiscountFactor,
-                         boolean isFirstClass, ArrayList<DayOfWeek> validWeekDays, ArrayList<MonthDay> validYearDays) {
+                         boolean isFirstClass, List<DayOfWeek> validWeekDays, List<MonthDay> validYearDays) {
         this.name = name;
         this.discountFactor = discountFactor;
         this.balanceRequirementDiscountFactor = balanceRequirementDiscountFactor;
@@ -45,11 +45,11 @@ public class TravelProduct {
         return isFirstClass;
     }
 
-    public ArrayList<DayOfWeek> getValidWeekDays() {
+    public List<DayOfWeek> getValidWeekDays() {
         return validWeekDays;
     }
 
-    public ArrayList<MonthDay> getValidYearDays() {
+    public List<MonthDay> getValidYearDays() {
         return validYearDays;
     }
 
